@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq;
 using Tools.IDPools;
 
-namespace Stocks
+namespace Stocks.Inventories
 {
     public interface IInventoryModel : IReadOnlyDictionary<long, ItemModel>
     {
