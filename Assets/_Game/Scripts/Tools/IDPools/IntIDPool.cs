@@ -2,14 +2,14 @@ namespace Tools.IDPools
 {
     public class IntIDPool: IDPool<int>
     {
-        private int maxReached;
+        public int MaxReached { get; private set; }
 
-        protected override bool CanCreateID => maxReached < int.MaxValue;
+        protected override bool CanCreateID => MaxReached < int.MaxValue;
         
         protected override int CreateID()
         {
-            maxReached++;
-            return maxReached;
+            MaxReached++;
+            return MaxReached;
         }
     }
 }

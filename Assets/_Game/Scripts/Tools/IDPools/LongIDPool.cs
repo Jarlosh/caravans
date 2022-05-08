@@ -2,14 +2,14 @@ namespace Tools.IDPools
 {
     public class LongIDPool: IDPool<long>
     {
-        private long maxReached;
+        public long MaxReached { get; private set; }
 
-        protected override bool CanCreateID => maxReached < long.MaxValue;
+        protected override bool CanCreateID => MaxReached < long.MaxValue;
         
         protected override long CreateID()
         {
-            maxReached++;
-            return maxReached;
+            MaxReached++;
+            return MaxReached;
         }
     }
 }

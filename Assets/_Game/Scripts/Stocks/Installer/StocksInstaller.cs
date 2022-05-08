@@ -1,4 +1,5 @@
 using _Game.Scripts;
+using Stocks.ItemHandle;
 using UnityEngine;
 using Zenject;
 
@@ -10,6 +11,8 @@ namespace Stocks.Installer
         
         public override void InstallBindings()
         {
+            ItemFactoryInstaller.Install(Container);
+            
             Container
                 .BindInterfacesTo<ItemConfigManager>()
                 .AsSingle()

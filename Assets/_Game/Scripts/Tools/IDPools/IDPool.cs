@@ -6,7 +6,7 @@ namespace Tools.IDPools
 {
     public abstract class IDPool<T>
     {
-        private Stack<T> released;
+        private Stack<T> released = new Stack<T>();
 
         public bool CanAllocateID => released.Any() || CanCreateID;
 
