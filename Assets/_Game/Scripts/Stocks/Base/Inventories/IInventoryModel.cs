@@ -9,7 +9,7 @@ namespace Stocks.Inventories
 {
     public interface IInventoryModel : IReadOnlyDictionary<long, ItemModel>
     {
-        long Add(ItemModel model);
+        bool Add(ItemModel model);
         bool Remove(long localID);
         public IEnumerable<ItemModel> GetByItemID(int itemId);
     }

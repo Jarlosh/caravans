@@ -9,29 +9,25 @@ namespace Stocks.Inventories
     {
         private IDictionary<long, ItemModel> byLocalID;
         private IDictionary<int, HashSet<ItemModel>> byItemID;
-        private LongIDPool localIdPool;
 
         public InventoryModel()
         {
             byItemID = new Dictionary<int, HashSet<ItemModel>>();
             byLocalID = new Dictionary<long, ItemModel>();
-            localIdPool = new LongIDPool();
         }
 
-        public long Add(ItemModel model)
+        public bool Add(ItemModel model)
         {
-            if (!localIdPool.CanAllocateID)
-                throw new Exception("Can't allocate ID");
-                
-            var localID = localIdPool.AllocateID();
-            byLocalID.Add(localID, model);
+            if (ContainsKey(model.ID))
+                return false;
+            
+            byLocalID.Add(model.ID, model);
 
             var itemID = model.ItemID;
             if (!byItemID.TryGetValue(itemID, out var modelList))
                 modelList = byItemID[itemID] = new HashSet<ItemModel>();
             modelList.Add(model);
-            
-            return localID;
+            return true;
         }
 
         public bool Remove(long localID)
@@ -39,7 +35,6 @@ namespace Stocks.Inventories
             if (!TryGetValue(localID, out var item))
                 return false;
             byLocalID.Remove(localID);
-            localIdPool.ReleaseID(localID);
 
             if (TryGetSetByItemID(item.ItemID, out var set)) 
                 set.Remove(item);
