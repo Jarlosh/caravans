@@ -7,8 +7,7 @@ namespace Stocks.ItemExtensions
     {
         public int calories;
     }
-    
-    
+
     public class FoodItemExtensionInfoInfo : IItemExtensionInfo
     {
         public int calories = 100;
