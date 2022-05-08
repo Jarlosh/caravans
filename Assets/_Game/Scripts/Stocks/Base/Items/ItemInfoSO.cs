@@ -9,6 +9,8 @@ namespace Stocks
     {
         public string Name;
         public int ID;
+        public Sprite Icon;
+        public Color Color;
         
         public List<ItemExtensionSORef> Extensions;
 
@@ -23,9 +25,20 @@ namespace Stocks
     {
         public string Name;
         public int ID;
+        public Sprite Icon;
+        public Color Color;
 
         public List<ItemExtensionInfoRef> Extensions;
-        
+
+        public ItemInfo(ItemInfoSO infoSO, List<ItemExtensionInfoRef> extensions)
+        {
+            Name = infoSO.Name;
+            ID = infoSO.ID;
+            Color = infoSO.Color;
+            Icon = infoSO.Icon;
+            Extensions = extensions;
+        }
+
         public override string ToString()
         {
             return $"[{ID}] {Name}";

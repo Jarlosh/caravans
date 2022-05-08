@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa3172faca547be94867d649f3e3635, type: 3}
-  m_Name: BlueBlock
+  m_Script: {fileID: 11500000, guid: a0d7f0a64c524d4ba82444866490a61e, type: 3}
+  m_Name: LeftInvData
   m_EditorClassIdentifier: 
-  Name: Blue block
-  ID: 0
-  Icon: {fileID: 21300000, guid: fd47fcbaf3bacb34d8ff539d8ffb6988, type: 3}
-  Extensions: []
+  itemsData:
+  - item: {fileID: 11400000, guid: 80f77a978c96dc54b8747609f31cc845, type: 2}
+    Count: 1

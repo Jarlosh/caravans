@@ -1,88 +1,59 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Tools.IDPools;
 
 namespace Stocks.Inventories
 {
     public class InventoryModel : IInventoryModel
     {
-        private IDictionary<long, ItemModel> byLocalID;
-        private IDictionary<int, HashSet<ItemModel>> byItemID;
+        private HashSet<ItemModel> set;
 
+        public int Count => set.Count;
+
+        public event Action<ItemModel> OnItemAdded;
+        public event Action<ItemModel> OnItemRemoved;
+        
         public InventoryModel()
         {
-            byItemID = new Dictionary<int, HashSet<ItemModel>>();
-            byLocalID = new Dictionary<long, ItemModel>();
+            set = new HashSet<ItemModel>();
+        }
+        
+        public InventoryModel(IEnumerable<ItemModel> models) : this()
+        {
+            set = new HashSet<ItemModel>(models);
         }
 
-        public bool Add(ItemModel model)
+        public bool TryAdd(ItemModel model)
         {
-            if (ContainsKey(model.ID))
+            if (!set.Add(model))
                 return false;
-            
-            byLocalID.Add(model.ID, model);
-
-            var itemID = model.ItemID;
-            if (!byItemID.TryGetValue(itemID, out var modelList))
-                modelList = byItemID[itemID] = new HashSet<ItemModel>();
-            modelList.Add(model);
+            OnItemAdded?.Invoke(model);
             return true;
         }
 
-        public bool Remove(long localID)
+        public bool Remove(ItemModel model)
         {
-            if (!TryGetValue(localID, out var item))
+            if (!set.Remove(model))
                 return false;
-            byLocalID.Remove(localID);
-
-            if (TryGetSetByItemID(item.ItemID, out var set)) 
-                set.Remove(item);
-            
+            OnItemRemoved?.Invoke(model);
             return true;
         }
-        
-        public IEnumerable<ItemModel> GetByItemID(int itemId)
-        {
-            if(byItemID.TryGetValue(itemId, out var list))
-                foreach (var model in list)
-                    yield return model;
-            yield break;
-        }
 
-        private bool TryGetSetByItemID(int itemId, out HashSet<ItemModel> set)
+        public bool Contains(ItemModel model)
         {
-            return (byItemID.TryGetValue(itemId, out set));
+            return set.Contains(model);
         }
         
-        #region Delegated
-        public IEnumerator<KeyValuePair<long, ItemModel>> GetEnumerator()
+        public IEnumerator<ItemModel> GetEnumerator()
         {
-            return byLocalID.GetEnumerator();
+            return set.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable) byLocalID).GetEnumerator();
+            return GetEnumerator();
         }
-
-        public int Count => byLocalID.Count;
-
-        public bool ContainsKey(long key)
-        {
-            return byLocalID.ContainsKey(key);
-        }
-
-        public bool TryGetValue(long key, out ItemModel value)
-        {
-            return byLocalID.TryGetValue(key, out value);
-        }
-
-        public ItemModel this[long key] => byLocalID[key];
-
-        public IEnumerable<long> Keys => byLocalID.Keys;
-
-        public IEnumerable<ItemModel> Values => byLocalID.Values;
-        #endregion
     }
 }

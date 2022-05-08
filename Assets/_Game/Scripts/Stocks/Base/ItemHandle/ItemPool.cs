@@ -40,9 +40,9 @@ namespace Stocks.ItemHandle
         public class Factory : PlaceholderFactory<int, int, ItemModel>
         {
             // just to give arg names to ide
-            public override ItemModel Create(int userId, int count)
+            public new ItemModel Create(int itemId, int count)
             {
-                return base.Create(userId, count);
+                return base.Create(itemId, count);
             }
         }
     }

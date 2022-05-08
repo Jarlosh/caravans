@@ -7,10 +7,15 @@ using Tools.IDPools;
 
 namespace Stocks.Inventories
 {
-    public interface IInventoryModel : IReadOnlyDictionary<long, ItemModel>
+    public interface IInventoryModel : IEnumerable<ItemModel>
     {
-        bool Add(ItemModel model);
-        bool Remove(long localID);
-        public IEnumerable<ItemModel> GetByItemID(int itemId);
+        int Count { get; }
+        
+        bool TryAdd(ItemModel model);
+        bool Remove(ItemModel model);
+        bool Contains(ItemModel model);
+
+        public event Action<ItemModel> OnItemAdded;
+        public event Action<ItemModel> OnItemRemoved;
     }
 }

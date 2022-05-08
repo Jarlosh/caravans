@@ -25,12 +25,8 @@ namespace Stocks.Builders
 
         private ItemInfo BuildInfo(ItemInfoSO itemInfoSo)
         {
-            return new ItemInfo()
-            {
-                ID = itemInfoSo.ID,
-                Name = itemInfoSo.Name,
-                Extensions = BuildExtensions(itemInfoSo.Extensions).ToList()
-            };
+            var extensions = BuildExtensions(itemInfoSo.Extensions).ToList();
+            return new ItemInfo(itemInfoSo, extensions);
         }
 
         private IEnumerable<ItemExtensionInfoRef> BuildExtensions(List<ItemExtensionSORef> extensions)
