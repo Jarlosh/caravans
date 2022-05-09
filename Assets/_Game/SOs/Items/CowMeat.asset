@@ -15,6 +15,7 @@ MonoBehaviour:
   Name: Cow meat
   ID: 1
   Icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  Color: {r: 0.509434, g: 0.11774654, b: 0.11774654, a: 1}
   Extensions:
   - type: 0
     infoSO: {fileID: 11400000, guid: e02922eae041bd042981c700653429da, type: 2}

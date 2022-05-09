@@ -15,4 +15,5 @@ MonoBehaviour:
   Name: Blue block
   ID: 0
   Icon: {fileID: 21300000, guid: fd47fcbaf3bacb34d8ff539d8ffb6988, type: 3}
+  Color: {r: 0.13710396, g: 0.15684414, b: 0.745283, a: 1}
   Extensions: []

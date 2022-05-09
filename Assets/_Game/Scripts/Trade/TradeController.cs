@@ -1,4 +1,3 @@
-
 using System;
 using Stocks;
 using Stocks.Inventories;

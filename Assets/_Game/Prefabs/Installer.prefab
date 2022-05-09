@@ -77,3 +77,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemConfig: {fileID: 11400000, guid: 8e94aacec06f08642a466614e31a0907, type: 2}
+  inventoryConfig:
+    itemViewPrefab: {fileID: 1315192357636445789, guid: e69c2a2f3fd6b604f923f6a90770aba7, type: 3}
