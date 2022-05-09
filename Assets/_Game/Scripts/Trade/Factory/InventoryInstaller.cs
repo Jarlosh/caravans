@@ -27,9 +27,9 @@ namespace Trade.Factory
                 
             Container
                 .BindFactory<Transform, ItemModel, ItemInfo, InventoryItemView, InventoryItemView.PoolFactory>()
-                .FromMonoPoolableMemoryPool(
-                    x => x.WithInitialSize(2)
-                        .FromComponentInNewPrefab(config.itemViewPrefab)
+                .FromMonoPoolableMemoryPool(x => x
+                    .WithInitialSize(2)
+                    .FromComponentInNewPrefab(config.itemViewPrefab)
                 );
         }
 

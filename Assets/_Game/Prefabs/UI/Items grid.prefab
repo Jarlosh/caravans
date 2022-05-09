@@ -486,7 +486,6 @@ GameObject:
   - component: {fileID: 8474325329056746190}
   - component: {fileID: 8474325329056746177}
   - component: {fileID: 8474325329056746176}
-  - component: {fileID: 1013931004466353563}
   m_Layer: 5
   m_Name: Items grid
   m_TagString: Untagged
@@ -542,20 +541,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8474325329056746189}
   m_CullTransparentMesh: 1
---- !u!114 &1013931004466353563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8474325329056746189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd196952a7344ba0abf6a05920c8aef1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 1315192357636445789, guid: e69c2a2f3fd6b604f923f6a90770aba7, type: 3}
-  parent: {fileID: 8474325329133734948}
 --- !u!1 &8474325329133734947
 GameObject:
   m_ObjectHideFlags: 0
