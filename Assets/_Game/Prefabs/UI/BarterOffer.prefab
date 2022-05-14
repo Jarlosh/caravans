@@ -127,6 +127,10 @@ PrefabInstance:
       propertyPath: m_FlexibleHeight
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2387035776219952348, guid: 47c57790f82facb41b1b2295a3d6e41b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 835
+      objectReference: {fileID: 0}
     - target: {fileID: 2387035776360935990, guid: 47c57790f82facb41b1b2295a3d6e41b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

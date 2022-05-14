@@ -434,7 +434,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3917760410966863695}
-  - component: {fileID: 3182204785664647307}
   m_Layer: 5
   m_Name: Trade view
   m_TagString: Untagged
@@ -462,22 +461,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3182204785664647307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917760410966863694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef5fd1932b3642b9a79a24936ee30e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftData: {fileID: 11400000, guid: 05ee540d4d0b84c458f6bf9622d86565, type: 2}
-  rightData: {fileID: 11400000, guid: 2a13de5c243b30e41a9fff334d954ae1, type: 2}
-  leftView: {fileID: 7338981129667463088}
-  rightView: {fileID: 161611191815853105}
 --- !u!1 &4288788318886055453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2613,17 +2596,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2edc9289b62f7d4da73090643552cc8, type: 3}
---- !u!114 &161611191815853105 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3774164731646870410, guid: b2edc9289b62f7d4da73090643552cc8, type: 3}
-  m_PrefabInstance: {fileID: 3917760412236896187}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e9c44dcbe7643d88aaa4ee5111f4f79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &5888960808866458471 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7487063895582538972, guid: b2edc9289b62f7d4da73090643552cc8, type: 3}
@@ -4726,17 +4698,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2edc9289b62f7d4da73090643552cc8, type: 3}
---- !u!114 &7338981129667463088 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3774164731646870410, guid: b2edc9289b62f7d4da73090643552cc8, type: 3}
-  m_PrefabInstance: {fileID: 5888960808897037370}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e9c44dcbe7643d88aaa4ee5111f4f79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &3917760412201269478 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7487063895582538972, guid: b2edc9289b62f7d4da73090643552cc8, type: 3}
@@ -4749,6 +4710,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 320534912205024935}
     m_Modifications:
+    - target: {fileID: 1853083176806304198, guid: 489bd412f3250d7449be25cf853b312e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1853083176806304198, guid: 489bd412f3250d7449be25cf853b312e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1853083176806304198, guid: 489bd412f3250d7449be25cf853b312e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1853083176806304198, guid: 489bd412f3250d7449be25cf853b312e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1853083176806304198, guid: 489bd412f3250d7449be25cf853b312e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1853083176806304198, guid: 489bd412f3250d7449be25cf853b312e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1853083177324570779, guid: 489bd412f3250d7449be25cf853b312e, type: 3}
       propertyPath: m_Name
       value: Barter offer right
