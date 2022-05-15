@@ -6,12 +6,12 @@ namespace Trade
 {
     public class Inventory : IDisposable
     {
-        public InventoryModel Model { get; private set; }
+        public IInventoryModel Model { get; private set; }
         private InventoryView view;
         
         public event Action<ItemModel> OnItemClickedEvent;
         
-        public Inventory(InventoryModel model, InventoryView view)
+        public Inventory(IInventoryModel model, InventoryView view)
         {
             Model = model;
             this.view = view;

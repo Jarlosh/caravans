@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Scripts.Tools.UI;
 using Stocks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
-using Random = UnityEngine.Random;
 
 namespace Trade.Factory
 {
@@ -13,7 +14,9 @@ namespace Trade.Factory
         IDisposable, IPoolable<Transform, ItemModel, ItemInfo, IMemoryPool>
     {
         [SerializeField] private Image iconImage;
-        [SerializeField] Button button;
+        [SerializeField] private Button button;
+        [SerializeField] private UiCounter count;
+        private const int countDigits = 2;
         
         IMemoryPool _pool;
         
@@ -23,9 +26,10 @@ namespace Trade.Factory
 
         public void SetItemData(ItemModel item, ItemInfo desc)
         {
+            Item = item;
             iconImage.sprite = desc.Icon;
             iconImage.color = desc.Color;
-            Item = item;
+            count.Value = Item.Count;
         }
 
         public void Dispose()

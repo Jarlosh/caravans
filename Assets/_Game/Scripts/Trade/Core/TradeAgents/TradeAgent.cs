@@ -5,20 +5,20 @@ using Stocks.TestData;
 
 namespace Trade
 {
-    public class TradeAgent : TradeAgentAbc, ITradeAgent
+    public class TradeAgent : TradeAgentAbc
     {
-        private InventoryModel userInv;
-        private InventoryModel barterInv;
+        private IInventoryModel mainInv;
+        private IInventoryModel targetInv;
 
-        public TradeAgent(InventoryModel userInv, InventoryModel barterInv)
+        public TradeAgent(IInventoryModel mainInv, IInventoryModel targetInv)
         {
-            this.userInv = userInv;
-            this.barterInv = barterInv;
+            this.mainInv = mainInv;
+            this.targetInv = targetInv;
         }
 
-        public void Trade(ItemModel item)
+        public override void Trade(ItemModel item)
         {
-            TransferItem(userInv, barterInv, item);
+            TransferItem(mainInv, targetInv, item);
         }
     }
 }

@@ -6,14 +6,14 @@ namespace Trade
 {
     public class InventoryController : IDisposable
     {
-        public InventoryModel model;
+        public IInventoryModel model;
         private InventoryView view;
         private bool listening;
         private ITradeAgent strategy;
 
         public bool Listening => listening;
 
-        public InventoryController(InventoryModel model, InventoryView view, ITradeAgent strategy)
+        public InventoryController(IInventoryModel model, InventoryView view, ITradeAgent strategy)
         {
             this.model = model;
             this.view = view;

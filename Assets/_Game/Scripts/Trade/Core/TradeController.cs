@@ -23,10 +23,10 @@ namespace Trade
         
         public class TradeData
         {
-            public InventoryModel userInventory;
-            public InventoryModel otherInventory;
-            public InventoryModel barterInInventory;
-            public InventoryModel barterOutInventory;
+            public IInventoryModel userInventory;
+            public IInventoryModel otherInventory;
+            public IInventoryModel barterInInventory;
+            public IInventoryModel barterOutInventory;
         }
 
         private Config config;
@@ -68,14 +68,14 @@ namespace Trade
             TransferAll(tradeData.barterOutInventory, tradeData.otherInventory);
         }
 
-        private void TransferAll(InventoryModel from, InventoryModel to)
+        private void TransferAll(IInventoryModel from, IInventoryModel to)
         {
             var items = from.ToArray();
             foreach (var item in items) 
                 Transfer(from, to, item);
         }
 
-        private void Transfer(InventoryModel from, InventoryModel to, ItemModel item)
+        private void Transfer(IInventoryModel from, IInventoryModel to, ItemModel item)
         {
             from.Remove(item);
             to.TryAdd(item);

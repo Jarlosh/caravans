@@ -14,7 +14,7 @@ namespace Trade
         [SerializeField] private Transform itemsViewsParent;
         [Inject] private InventoryViewContainer itemViewsContainer;
 
-        private InventoryModel inventory;
+        private IInventoryModel inventory;
 
         public event Action<InventoryView, ItemModel> OnItemClickedEvent;
 
@@ -48,7 +48,7 @@ namespace Trade
             }
         }
 
-        public void SetInventory(InventoryModel inventory)
+        public void SetInventory(IInventoryModel inventory)
         {
             Clear();
             
