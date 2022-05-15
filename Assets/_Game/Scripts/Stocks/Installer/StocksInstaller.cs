@@ -38,10 +38,10 @@ namespace Stocks.Installer
                 .BindInterfacesAndSelfTo<TestInventoryDataBuilder>()
                 .AsSingle();
             
-            Container
-                .BindInterfacesTo<TestClass>()
-                .AsSingle()
-                .NonLazy();
+            // Container
+            //     .BindInterfacesTo<TestClass>()
+            //     .AsSingle()
+            //     .NonLazy();
         }
     }
 }

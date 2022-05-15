@@ -24,23 +24,23 @@ namespace Trade
         {
             return new TradeController.TradeData()
             {
-                userInventory = MakeModel(config.leftData),
-                otherInventory = MakeModel(config.rightData),
-                barterOutInventory = MakeModel(),
-                barterInInventory = MakeModel()
+                userInventory = MakeInventory(config.leftData),
+                otherInventory = MakeInventory(config.rightData),
+                barterOutInventory = MakeInventory(),
+                barterInInventory = MakeInventory()
             };
         }
 
-        private InventoryModel MakeModel()
+        private IInventoryController MakeInventory()
         {
-            return new InventoryModel();
+            return new InventoryController(new InventoryModel());
         }
 
-        private InventoryModel MakeModel(TestInventoryData data)
+        private IInventoryController MakeInventory(TestInventoryData data)
         {
-            var inv = MakeModel();
+            var inv = MakeInventory();
             foreach (var itemModel in builder.Build(data)) 
-                inv.TryAdd(itemModel);
+                inv.AddCount(itemModel, itemModel.Count);
             return inv;
         }
     }

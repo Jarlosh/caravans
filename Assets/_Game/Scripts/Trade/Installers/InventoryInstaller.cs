@@ -1,5 +1,6 @@
 using System;
 using Stocks;
+using Stocks.Inventories;
 using UnityEngine;
 using Zenject;
 
@@ -22,11 +23,11 @@ namespace Trade.Factory
         private void BindItemViews()
         {
             Container
-                .BindInterfacesAndSelfTo<InventoryViewContainer>()
+                .Bind<StackViewContainer>()
                 .AsTransient();
                 
             Container
-                .BindFactory<Transform, ItemModel, ItemInfo, InventoryItemView, InventoryItemView.PoolFactory>()
+                .BindFactory<Transform, ItemStack, ItemInfo, StackView, StackView.PoolFactory>()
                 .FromMonoPoolableMemoryPool(x => x
                     .WithInitialSize(2)
                     .FromComponentInNewPrefab(config.itemViewPrefab)

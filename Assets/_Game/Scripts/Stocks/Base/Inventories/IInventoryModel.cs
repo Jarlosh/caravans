@@ -4,18 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq;
 using Tools.IDPools;
+using UniRx;
 
 namespace Stocks.Inventories
 {
-    public interface IInventoryModel : IEnumerable<ItemModel>
+    public interface IInventoryModel
     {
-        int Count { get; }
-        
-        bool TryAdd(ItemModel model);
-        bool Remove(ItemModel model);
-        bool Contains(ItemModel model);
+        ReactiveCollection<ItemStack> Stacks { get; }
 
-        public event Action<ItemModel> OnItemAdded;
-        public event Action<ItemModel> OnItemRemoved;
+        IEnumerable<ItemStack> GetStacksOf(ItemModel item);
+        
+        bool Contains(ItemStack stack);
     }
 }

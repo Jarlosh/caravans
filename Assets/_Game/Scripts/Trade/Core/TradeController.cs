@@ -23,14 +23,14 @@ namespace Trade
         
         public class TradeData
         {
-            public IInventoryModel userInventory;
-            public IInventoryModel otherInventory;
-            public IInventoryModel barterInInventory;
-            public IInventoryModel barterOutInventory;
+            public IInventoryController userInventory;
+            public IInventoryController otherInventory;
+            public IInventoryController barterInInventory;
+            public IInventoryController barterOutInventory;
         }
 
         private Config config;
-        private InventoryController[] controllers;
+        private TraderController[] controllers;
         private TradeData tradeData;
 
         public TradeController(Config config)
@@ -43,17 +43,17 @@ namespace Trade
             this.tradeData = tradeData;
             controllers = new[]
             {
-                new InventoryController(tradeData.userInventory, config.userView,
-                    new TradeAgent(tradeData.userInventory, tradeData.barterOutInventory)),
+                new TraderController(tradeData.userInventory, config.userView,
+                    new TradeStrategy(tradeData.userInventory, tradeData.barterOutInventory)),
 
-                new InventoryController(tradeData.otherInventory, config.otherView,
-                    new TradeAgent(tradeData.otherInventory, tradeData.barterInInventory)),
+                new TraderController(tradeData.otherInventory, config.otherView,
+                    new TradeStrategy(tradeData.otherInventory, tradeData.barterInInventory)),
 
-                new InventoryController(tradeData.barterOutInventory, config.barterOutView,
-                    new TradeAgent(tradeData.barterOutInventory, tradeData.userInventory)),
+                new TraderController(tradeData.barterOutInventory, config.barterOutView,
+                    new TradeStrategy(tradeData.barterOutInventory, tradeData.userInventory)),
 
-                new InventoryController(tradeData.barterInInventory, config.barterInView,
-                    new TradeAgent(tradeData.barterInInventory, tradeData.otherInventory)),
+                new TraderController(tradeData.barterInInventory, config.barterInView,
+                    new TradeStrategy(tradeData.barterInInventory, tradeData.otherInventory)),
             };
 
             config.tradeButton.onClick.AddListener(OnTradeClick);
@@ -68,17 +68,17 @@ namespace Trade
             TransferAll(tradeData.barterOutInventory, tradeData.otherInventory);
         }
 
-        private void TransferAll(IInventoryModel from, IInventoryModel to)
+        private void TransferAll(IInventoryController from, IInventoryController to)
         {
-            var items = from.ToArray();
-            foreach (var item in items) 
+            var stacks = from.Model.Stacks.ToArray();
+            foreach (var item in stacks) 
                 Transfer(from, to, item);
         }
 
-        private void Transfer(IInventoryModel from, IInventoryModel to, ItemModel item)
+        private void Transfer(IInventoryController from, IInventoryController to, ItemStack stack)
         {
-            from.Remove(item);
-            to.TryAdd(item);
+            to.AddCount(stack.Item, stack.Count.Value);
+            from.DecreaseStack(stack, stack.Count.Value);
         }
 
         private bool IsDealPossible()

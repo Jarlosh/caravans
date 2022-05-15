@@ -3,57 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Tools.IDPools;
+using UniRx;
 
 namespace Stocks.Inventories
 {
     public class InventoryModel : IInventoryModel
     {
-        private HashSet<ItemModel> set;
+        public ReactiveCollection<ItemStack> Stacks { get; } = new ReactiveCollection<ItemStack>();
 
-        public int Count => set.Count;
-
-        public event Action<ItemModel> OnItemAdded;
-        public event Action<ItemModel> OnItemRemoved;
-        
-        public InventoryModel()
+        public IEnumerable<ItemStack> GetStacksOf(ItemModel item)
         {
-            set = new HashSet<ItemModel>();
-        }
-        
-        public InventoryModel(IEnumerable<ItemModel> models) : this()
-        {
-            set = new HashSet<ItemModel>(models);
+            return Stacks.Where(s => s.Item.ItemID == item.ItemID);
         }
 
-        public bool TryAdd(ItemModel model)
+        public bool Contains(ItemStack stack)
         {
-            if (!set.Add(model))
-                return false;
-            OnItemAdded?.Invoke(model);
-            return true;
-        }
-
-        public bool Remove(ItemModel model)
-        {
-            if (!set.Remove(model))
-                return false;
-            OnItemRemoved?.Invoke(model);
-            return true;
-        }
-
-        public bool Contains(ItemModel model)
-        {
-            return set.Contains(model);
-        }
-        
-        public IEnumerator<ItemModel> GetEnumerator()
-        {
-            return set.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
+            return Stacks.Contains(stack);
         }
     }
 }
