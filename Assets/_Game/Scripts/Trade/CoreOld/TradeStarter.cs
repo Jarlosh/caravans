@@ -7,7 +7,7 @@ namespace Trade
     public class TradeStarter : IInitializable
     {
         [Inject] private TestInventoryDataBuilder builder;
-        [Inject] private ITradeController<TradeController.TradeData> controller;
+        [Inject] private ITradeControllerOld<TradeControllerOldOld.TradeData> _controllerOld;
         private TradeConfig config;
 
         public TradeStarter(TradeConfig config)
@@ -17,12 +17,12 @@ namespace Trade
         
         public void Initialize()
         {
-            controller.Initialize(MakeTradeData());
+            _controllerOld.Initialize(MakeTradeData());
         }
 
-        private TradeController.TradeData MakeTradeData()
+        private TradeControllerOldOld.TradeData MakeTradeData()
         {
-            return new TradeController.TradeData()
+            return new TradeControllerOldOld.TradeData()
             {
                 userInventory = MakeInventory(config.leftData),
                 otherInventory = MakeInventory(config.rightData),
@@ -31,12 +31,12 @@ namespace Trade
             };
         }
 
-        private IInventoryController MakeInventory()
+        private IInventoryControllerOld MakeInventory()
         {
-            return new InventoryController(new InventoryModel());
+            return new InventoryControllerOld(new InventoryModelOld());
         }
 
-        private IInventoryController MakeInventory(TestInventoryData data)
+        private IInventoryControllerOld MakeInventory(TestInventoryData data)
         {
             var inv = MakeInventory();
             foreach (var itemModel in builder.Build(data)) 

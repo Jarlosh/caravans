@@ -23,11 +23,11 @@ namespace Trade.Factory
         private void BindItemViews()
         {
             Container
-                .Bind<StackViewContainer>()
+                .Bind<StackViewContainerOld>()
                 .AsTransient();
                 
             Container
-                .BindFactory<Transform, ItemStack, ItemInfo, StackView, StackView.PoolFactory>()
+                .BindFactory<Transform, ItemStack, ItemInfo, StackViewOld, StackViewOld.PoolFactory>()
                 .FromMonoPoolableMemoryPool(x => x
                     .WithInitialSize(2)
                     .FromComponentInNewPrefab(config.itemViewPrefab)

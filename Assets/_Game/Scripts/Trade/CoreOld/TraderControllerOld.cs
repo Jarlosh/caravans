@@ -5,22 +5,22 @@ using UniRx;
 
 namespace Trade
 {
-    public class TraderController : IDisposable
+    public class TraderControllerOld : IDisposable
     {
-        private IInventoryController controller;
-        private InventoryView view;
+        private IInventoryControllerOld _controllerOld;
+        private InventoryViewOld _viewOld;
         private bool listening;
-        private ITradeStrategy strategy;
+        private ITradeStrategyOld _strategyOld;
         private IDisposable subcription;
 
         public bool Listening => listening;
 
-        public TraderController(IInventoryController controller, InventoryView view, ITradeStrategy strategy)
+        public TraderControllerOld(IInventoryControllerOld controllerOld, InventoryViewOld viewOld, ITradeStrategyOld strategyOld)
         {
-            this.controller = controller;
-            this.view = view;
-            this.strategy = strategy;
-            view.SetInventory(controller.Model);
+            this._controllerOld = controllerOld;
+            this._viewOld = viewOld;
+            this._strategyOld = strategyOld;
+            viewOld.SetInventory(controllerOld.ModelOld);
             SetListening(true);
         }
 
@@ -36,7 +36,7 @@ namespace Trade
 
         public void Subscribe()
         {
-            subcription = view.OnStackClicked.Subscribe(OnItemClicked);
+            subcription = _viewOld.OnStackClicked.Subscribe(OnItemClicked);
         }
 
         private void Unsubcribe()
@@ -46,7 +46,7 @@ namespace Trade
 
         private void OnItemClicked(ItemStack stack)
         {
-            strategy.OnClick(stack);   
+            _strategyOld.OnClick(stack);   
         }
 
         public void Dispose()

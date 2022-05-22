@@ -9,13 +9,13 @@ using Zenject;
 
 namespace Trade
 {
-    public class StackViewContainer
+    public class StackViewContainerOld
     {
-        [Inject] private StackView.PoolFactory itemViewPool;
+        [Inject] private StackViewOld.PoolFactory itemViewPool;
         [Inject] private IItemConfigManager itemManager;
 
-        private Dictionary<ItemStack, StackView> _spawned 
-            = new Dictionary<ItemStack, StackView>();
+        private Dictionary<ItemStack, StackViewOld> _spawned 
+            = new Dictionary<ItemStack, StackViewOld>();
 
         public Subject<ItemStack> OnItemClicked = new Subject<ItemStack>();
 
@@ -37,9 +37,9 @@ namespace Trade
             view.Dispose();
         }
 
-        private void OnItemClickedHandler(StackView view)
+        private void OnItemClickedHandler(StackViewOld viewOld)
         {
-            OnItemClicked.OnNext(view.Stack);
+            OnItemClicked.OnNext(viewOld.Stack);
         }
     }
 }

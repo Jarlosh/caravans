@@ -7,14 +7,14 @@ using UniRx;
 
 namespace Trade
 {
-    public class InventoryController : IInventoryController
+    public class InventoryControllerOld : IInventoryControllerOld
     {
         private const int MaxPerStack = 2;//int.MaxValue;
-        public IInventoryModel Model { get; private set; }
+        public IInventoryModelOld ModelOld { get; private set; }
 
-        public InventoryController(IInventoryModel model)
+        public InventoryControllerOld(IInventoryModelOld modelOld)
         {
-            Model = model;
+            ModelOld = modelOld;
         }
         
         //todo: implement
@@ -25,18 +25,18 @@ namespace Trade
 
         public void DecreaseStack(ItemStack stack, int count)
         {
-            if (!Model.Contains(stack)) 
+            if (!ModelOld.Contains(stack)) 
                 throw new Exception("Stack not found");
 
             stack.ChangeCount(-count);
             
             if (stack.Count.Value == 0)
-                Model.Stacks.Remove(stack);
+                ModelOld.Stacks.Remove(stack);
         }
 
         public void AddCount(ItemModel item, int count)
         {
-            var stacks = Model.GetStacksOf(item).ToArray();
+            var stacks = ModelOld.GetStacksOf(item).ToArray();
 
             foreach (var stack in stacks)
             {
@@ -62,10 +62,10 @@ namespace Trade
 
         private void AddStack(ItemModel item, int count)
         {
-            Model.Stacks.Add(new ItemStack(item, count));
+            ModelOld.Stacks.Add(new ItemStack(item, count));
         }
 
-        public void Transfer(IInventoryController other, ItemStack stack, int count)
+        public void Transfer(IInventoryControllerOld other, ItemStack stack, int count)
         {
             other.AddCount(stack.Item, count);
             DecreaseStack(stack, count);

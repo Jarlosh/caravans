@@ -5,12 +5,12 @@ using Stocks.TestData;
 
 namespace Trade
 {
-    public class TradeStrategy : ITradeStrategy
+    public class TradeStrategyOldOld : ITradeStrategyOld
     {
-        private IInventoryController mainInv;
-        private IInventoryController targetInv;
+        private IInventoryControllerOld mainInv;
+        private IInventoryControllerOld targetInv;
 
-        public TradeStrategy(IInventoryController mainInv, IInventoryController targetInv)
+        public TradeStrategyOldOld(IInventoryControllerOld mainInv, IInventoryControllerOld targetInv)
         {
             this.mainInv = mainInv;
             this.targetInv = targetInv;

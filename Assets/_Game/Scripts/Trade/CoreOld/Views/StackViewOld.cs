@@ -12,7 +12,7 @@ using Zenject;
 
 namespace Trade.Factory
 {
-    public class StackView : MonoBehaviour, 
+    public class StackViewOld : MonoBehaviour, 
         IDisposable, IPoolable<Transform, ItemStack, ItemInfo, IMemoryPool>
     {
         [SerializeField] private Image iconImage;
@@ -25,7 +25,7 @@ namespace Trade.Factory
         
         public ItemStack Stack { get; private set; }
 
-        public event Action<StackView> OnClickedEvent;
+        public event Action<StackViewOld> OnClickedEvent;
 
         public void SetItemData(ItemStack item, ItemInfo desc)
         {
@@ -65,9 +65,9 @@ namespace Trade.Factory
             OnClickedEvent?.Invoke(this);
         }
 
-        public class PoolFactory : PlaceholderFactory<Transform, ItemStack, ItemInfo, StackView>
+        public class PoolFactory : PlaceholderFactory<Transform, ItemStack, ItemInfo, StackViewOld>
         {
-            public new StackView Create(Transform parent, ItemStack item, ItemInfo desc)
+            public new StackViewOld Create(Transform parent, ItemStack item, ItemInfo desc)
             {
                 return base.Create(parent, item, desc);
             }

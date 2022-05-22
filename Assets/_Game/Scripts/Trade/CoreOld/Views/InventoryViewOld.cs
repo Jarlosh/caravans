@@ -10,12 +10,12 @@ using Zenject;
 
 namespace Trade
 {
-    public class InventoryView : MonoBehaviour
+    public class InventoryViewOld : MonoBehaviour
     {
         [SerializeField] private Transform itemsViewsParent;
-        [Inject] private StackViewContainer itemViewsContainer;
+        [Inject] private StackViewContainerOld _itemViewsContainerOld;
 
-        private IInventoryModel inventory;
+        private IInventoryModelOld inventory;
         public Subject<ItemStack> OnStackClicked = new Subject<ItemStack>();
 
         private CompositeDisposable subscriptions = new CompositeDisposable();
@@ -23,7 +23,7 @@ namespace Trade
 
         private void OnEnable()
         {
-            itemViewsContainerSubscription = itemViewsContainer
+            itemViewsContainerSubscription = _itemViewsContainerOld
                 .OnItemClicked
                 .Subscribe(OnItemClicked);
         }
@@ -57,15 +57,15 @@ namespace Trade
 
         private void OnStackAdded(ItemStack stack)
         {
-            itemViewsContainer.Spawn(itemsViewsParent, stack);
+            _itemViewsContainerOld.Spawn(itemsViewsParent, stack);
         }
         
         private void OnStackRemoved(ItemStack stack)
         {
-            itemViewsContainer.Despawn(stack);
+            _itemViewsContainerOld.Despawn(stack);
         }
         
-        public void SetInventory(IInventoryModel inventory)
+        public void SetInventory(IInventoryModelOld inventory)
         {
             Clear();
             

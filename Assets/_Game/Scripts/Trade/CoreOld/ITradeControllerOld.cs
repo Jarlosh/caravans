@@ -1,6 +1,6 @@
 namespace Trade
 {
-    public interface ITradeController<DataT>
+    public interface ITradeControllerOld<DataT>
     {
         void Initialize(DataT makeTradeData);
     }

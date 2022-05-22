@@ -7,7 +7,7 @@ using UniRx;
 
 namespace Stocks.Inventories
 {
-    public class InventoryModel : IInventoryModel
+    public class InventoryModelOld : IInventoryModelOld
     {
         public ReactiveCollection<ItemStack> Stacks { get; } = new ReactiveCollection<ItemStack>();
 

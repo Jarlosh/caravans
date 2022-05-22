@@ -3,7 +3,7 @@ using Stocks.Inventories;
 
 namespace Trade
 {
-    public interface ITradeStrategy
+    public interface ITradeStrategyOld
     {
         void OnClick(ItemStack item);
     }

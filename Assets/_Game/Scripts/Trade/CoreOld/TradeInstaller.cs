@@ -6,12 +6,12 @@ namespace Trade
     public class TradeInstaller : MonoInstaller
     {
         [SerializeField] private TradeConfig config;
-        [SerializeField] private TradeController.Config viewsConfig;
+        [SerializeField] private TradeControllerOldOld.Config viewsConfig;
 
         public override void InstallBindings()
         {
             Container
-                .BindInterfacesTo<TradeController>()
+                .BindInterfacesTo<TradeControllerOldOld>()
                 .AsSingle()
                 .WithArguments(viewsConfig);
 
